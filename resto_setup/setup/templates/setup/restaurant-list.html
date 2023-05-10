@@ -1,0 +1,45 @@
+{% extends 'setup/base.html' %}
+
+{% block content %}
+<head>
+  {% load bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+</head>
+  <div class="container">
+    <h2 class="header">Restaurant List</h2>
+    <table class="table table-dark">
+      <thead>
+        <tr>
+          <th>Restaurant ID</th>
+          <th>Name</th>
+          <th>Address</th>
+          <th>opening hours</th>
+          <th>tables</th>
+          <th>location</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for restaurant in setup %}
+          <tr>
+            <td>{{ restaurant.id }}</td>
+            <td>{{ restaurant.name }}</td>
+            <td>{{ restaurant.address }}</td>
+            <td>{{ restaurant.opening_hours }}</td>
+            <td>{{ restaurant.tables }}</td>
+            <td>{{ restaurant.location }}</td>
+    
+        
+            <td>
+              <a href="{% url 'setup:restaurant_detail' pk=restaurant.id %}">View</a>
+              <a href="{% url 'setup:restaurant_update' pk=restaurant.id %}" class="btn btn-primary btn-sm">Edit</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <style>
+    
+  </style>
+{% endblock %}

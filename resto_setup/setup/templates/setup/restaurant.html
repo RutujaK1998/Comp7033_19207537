@@ -1,0 +1,36 @@
+{% extends 'setup/base.html' %}
+
+{% block content %}
+  <h1>Staff List</h1>
+  <a href="{% url 'setup:restaurant_create' %}">Add restaurant Member</a>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>opening hours</th>
+        <th>location</th>
+        <th>tables</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for restaurant in restaurant_list %}
+        <tr>
+           
+          <td>{{ restaurant.name }}</td>
+          <td>{{ restaurant.address }}</td>
+          <td>{{ restaurant.opening_hours }}</td>
+          <td>{{ restaurant.location }}</td>
+          <td>{{restaurant.tables}} </td>
+            <a href="{% url 'setup:restaurant_detail' restaurant.id %}">View</a>
+            <a href="{% url 'setup:restaurant_update' restaurant.id %}">Edit</a>
+          </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="5">No staff members found.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

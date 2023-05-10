@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{% block title %}Restaurant Manager{% endblock %}</title>
+	{% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<body>
+	<div class="container-image">
+	<div class="btn-link">
+		<a class="btn btn-primary" href="{% url 'setup:restaurant-list' %}">Restaurant list</a>
+		<a class="btn btn-primary" href="{% url 'setup:restaurant_create' %}">Add restaurant</a>
+	</div>
+	
+	<div>
+		{% block content %}{% endblock %}
+	</div>
+	{% block scripts %}{% endblock %}
+
+
+	<footer>
+		{% if object and object.pk %}
+			<a href="{% url 'setup:restaurant_update' pk=object.pk %}">Edit</a>
+		{% endif %}
+	</footer>
+</div>
+</body>
+<style>
+	.btn-link{
+		padding-left: 35em;
+		padding-top: 2em;
+		margin-bottom: 1em;
+		}
+	.container-image{
+		/* background-image: url("https://img.freepik.com/premium-photo/food-photography-art-gourmet-restaurant-dessert-white-background-concept_201836-4319.jpg?w=360");
+		height: 100% !important;
+		width: 100%;
+		position: relative; */
+		background: url("https://img.freepik.com/premium-photo/food-photography-art-gourmet-restaurant-dessert-white-background-concept_201836-4319.jpg?w=360") no-repeat center center fixed; 
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+		
+	}
+</style>
+</html>

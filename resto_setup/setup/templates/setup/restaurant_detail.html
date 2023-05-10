@@ -1,0 +1,33 @@
+{% extends 'setup/base.html' %}
+
+{% block content %}
+  <div class="container mt-5">
+    <h1>restaurant Detail</h1>
+    <table class="table">
+      <tbody>
+        <tr>
+          <th>Name</th>
+          <td>{{ setup.name }}</td>
+        </tr>
+        <tr>
+          <th>Email</th>
+          <td>{{ setup.address }}</td>
+        </tr>
+        <tr>
+          <th>Phone</th>
+          <td>{{ setup.opening_hours }}</td>
+        </tr>
+        <tr>
+          <th>Table</th>
+          <td>{{ setup.tables }}</td>
+        </tr>
+        <tr>
+          <th>Location</th>
+          <td>{{ setup.location }}</td>
+        </tr>
+          
+      </tbody>
+    </table>
+    <a href="{% url 'setup:restaurant_update' restaurant.id %}" class="btn btn-primary">Edit</a>
+  </div>
+{% endblock %}
