@@ -1,0 +1,25 @@
+{% extends 'manager_dashboard/base.html' %}
+
+{% block title %}Menus{% endblock %}
+
+{% block content %}
+    <h1>Menus</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for menu in menus %}
+                <tr>
+                    <td>{{ menu.name }}</td>
+                    <td>{{ menu.description }}</td>
+                    <td>{{ menu.price }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
