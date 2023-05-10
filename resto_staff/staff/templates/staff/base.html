@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{% block title %}Restaurant Manager{% endblock %}</title>
+	{% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<body>
+	<div class="container-image">
+		<div class="btn-link">
+			<a class="btn btn-primary" href="{% url 'staff:staff-list' %}">Details</a>
+			<a class="btn btn-primary" href="{% url 'staff:staff_create' %}">Register staff</a>
+		</div>
+	</div>
+	<div>
+		{% block content %}{% endblock %}
+	</div>
+	{% block scripts %}{% endblock %}
+	
+	<footer>
+		{% if object and object.pk %}
+			<a href="{% url 'staff:staff_update' pk=object.pk %}">Edit</a>
+			<form method="POST" action="{% url 'staff:staff_delete' pk=object.pk %}" style="display: inline-block;">
+				{% csrf_token %}
+				<input type="submit" value="Delete">
+			</form>
+		{% endif %}
+	</footer>
+</body>
+<style>
+		.btn-link{
+		padding-left: 35em;
+		padding-top: 2em;
+		margin-bottom: 1em;
+		}
+	.container-image{
+		background-image: url("https://thumbs.dreamstime.com/b/restaurant-staff-characters-design-include-chef-assistants-manager-waitress-professionals-team-restaurant-staff-characters-design-134261104.jpg") no-repeat center center fixed;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+	}
+</style>
+</html>

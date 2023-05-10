@@ -1,0 +1,94 @@
+{% extends 'staff/base.html' %}
+
+{% block content %}
+<head>
+  {% load bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+</head>
+<div class="container-form">
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <h2 class="mt-4 heading">{% if staff.id %}Edit{% else %}Create{% endif %} Staff Member</h2>
+      <form method="post" class="mt-4">
+        {% csrf_token %}
+        {% if form.errors %}
+          <div class="alert alert-danger">
+            {% for field in form %}
+              {% for error in field.errors %}
+                <div class="mb-2">{{ error }}</div>
+              {% endfor %}
+            {% endfor %}
+          </div>
+        {% endif %}
+        <div class="border">
+        <div class="form-group name">
+          {{ form.name.label_tag }}
+          {{ form.name }}
+        </div>
+        <div class="form-group email">
+          {{ form.email.label_tag }}
+          {{ form.email }}
+        </div>
+        <div class="form-group phone">
+          {{ form.phone.label_tag }}
+          {{ form.phone }}
+        </div>
+        <div class="form-group address">
+          {{ form.address.label_tag }}
+          {{ form.address }}
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary submit">{% if staff.id %}Update{% else %}Create{% endif %}</button>
+          <a href="{% url 'staff:staff-list' %}" class="btn btn-secondary ml-2">Cancel</a>
+        </div>
+      </form>
+    </div>
+    </div>
+  </div>
+  </div>
+
+  <style>
+      .name{
+      margin: 1em 0em 0em 8em;
+      font-weight: bolder;
+    }
+    .address{
+      margin: 1em 0em 0em 8em;
+      font-weight: bolder;
+    }
+    .border{
+      border: 1px solid;
+      padding: 10px;
+      box-shadow: 5px 10px 18px #888888
+    }
+    .container-form{
+      opacity: 0.6;
+    }
+    .email{
+      margin: 1em 0em 0em 8em;
+      font-weight: bolder;
+    }
+    .phone{
+      margin: 1em 0em 1em 8em;
+      font-weight: bolder;
+    }
+    .form-group{
+      padding-left: 10em;
+    }
+    .btn-secondary{
+      margin-bottom: 0.5em;
+      color: black;
+      font-weight: bolder;
+    }
+    .submit{
+      margin-left: 12em;
+      margin-bottom: 0.5em;
+      color: black;
+      font-weight: bolder;
+    }
+    .heading{
+      margin-left: 4em;
+    }
+  </style>
+{% endblock %}

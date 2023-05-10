@@ -1,0 +1,35 @@
+{% extends 'staff/base.html' %}
+
+{% block content %}
+  <a href="{% url 'staff:staff_create' %}">Add Staff Member</a>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Address</th>
+        <th>Action</th> 
+      </tr>
+    </thead>
+    <tbody>
+      {% for staff_member in staff-list %}
+        <tr>
+          <td>{{ staff_member.name }}</td>
+          <td>{{ staff_member.email }}</td>
+          <td>{{ staff_member.phone }}</td>
+          <td>{{ staff_member.address }}</td>
+          <td>
+            <a href="{% url 'staff:staff_detail' staff_member.id %}">View</a>
+            <a href="{% url 'staff:staff_update' staff_member.id %}">Edit</a>
+            <a href="{% url 'staff:staff_delete' staff_member.id %}">Delete</a>
+          </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="5">No staff members found.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
